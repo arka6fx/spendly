@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy — Spendly{% endblock %}
+
+{% block head %}
+<style>
+    .legal-section {
+        padding: 4rem 2rem 6rem;
+        max-width: 720px;
+        margin: 0 auto;
+    }
+
+    .legal-section h1 {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+    }
+
+    .legal-meta {
+        font-size: 0.85rem;
+        color: var(--ink-faint);
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .legal-section h2 {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        color: var(--ink);
+        margin-top: 2.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .legal-section p {
+        font-size: 0.95rem;
+        color: var(--ink-muted);
+        line-height: 1.8;
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="legal-section">
+    <h1>Privacy Policy</h1>
+    <p class="legal-meta">Last updated: May 2026</p>
+
+    <h2>1. Data We Collect</h2>
+    <p>
+        When you create an account, we collect your name and email address. As you use
+        Spendly, we store the expense records you add — including amounts, categories,
+        dates, and any descriptions you provide.
+    </p>
+    <p>
+        We do not collect payment information, location data, or any data beyond what
+        is necessary to operate the service.
+    </p>
+
+    <h2>2. How We Use Your Data</h2>
+    <p>
+        Your data is used solely to provide and improve the Spendly service. This includes
+        displaying your expense history, generating summaries, and maintaining your account.
+    </p>
+    <p>
+        We do not sell your data, use it for advertising, or share it with third parties
+        for any commercial purpose.
+    </p>
+
+    <h2>3. Data Storage</h2>
+    <p>
+        Your data is stored securely and is accessible only to you via your account.
+        We take reasonable technical measures to protect your information from unauthorized
+        access, loss, or disclosure.
+    </p>
+    <p>
+        You may delete your account at any time. Upon deletion, all your personal data
+        and expense records will be permanently removed from our systems.
+    </p>
+
+    <h2>4. Third-Party Services</h2>
+    <p>
+        Spendly uses Google Fonts to load typefaces. This request is made directly from
+        your browser to Google's servers and is subject to Google's own privacy policy.
+        No other third-party services are used that have access to your personal data.
+    </p>
+
+    <h2>5. Contact Us</h2>
+    <p>
+        If you have any questions or concerns about this Privacy Policy or how your data
+        is handled, please reach out to us. We are committed to addressing any privacy-related
+        inquiries promptly and transparently.
+    </p>
+</div>
+{% endblock %}
