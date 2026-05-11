@@ -1,7 +1,9 @@
 ---
+name: seed-expense
 description: Seed realistic dummy expenses for a specific user
 argument-hint: "<user_id> <count> <months>"
 allowed-tools: Read, Bash(python3:*)
+disable-model-invocation: true
 ---
 
 Read database/db.py to understand the expenses table

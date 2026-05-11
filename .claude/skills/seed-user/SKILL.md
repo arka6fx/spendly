@@ -1,6 +1,8 @@
 ---
+name: seed-user
 description: Create a single dummy user in the database
 allowed-tools: Read, Bash(python3:*)
+disable-model-invocation: true
 ---
 
 Read database/db.py to understand the users table

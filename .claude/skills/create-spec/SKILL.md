@@ -1,7 +1,9 @@
 ---
+name: create-spec
 description: Create a spec file and feature branch for the next Spendly step
 argument-hint: "Step number and feature name e.g. 2 registration"
 allowed-tools: Read, Write, Glob, Bash(git:*)
+disable-model-invocation: true
 ---
 
 You are a senior developer spinning up a new feature for the
