@@ -86,7 +86,46 @@ def logout():
 
 @app.route("/profile")
 def profile():
-    return "Profile page — coming in Step 4"
+    if not session.get("user_id"):
+        return redirect(url_for("login"))
+
+    user = {
+        "name": "Alex Rivera",
+        "email": "alex@example.com",
+        "created_at": "2025-01-15",
+    }
+
+    summary = {
+        "total_spent": 316.25,
+        "total_count": 8,
+        "top_category": "Bills",
+    }
+
+    transactions = [
+        {"date": "2026-05-10", "description": "Movie tickets",    "category": "Entertainment", "amount": 25.00},
+        {"date": "2026-05-07", "description": "Pharmacy",         "category": "Health",        "amount": 30.00},
+        {"date": "2026-05-05", "description": "Internet bill",    "category": "Bills",         "amount": 120.00},
+        {"date": "2026-05-03", "description": "Monthly bus pass", "category": "Transport",     "amount": 45.00},
+        {"date": "2026-05-01", "description": "Lunch at cafe",    "category": "Food",          "amount": 12.50},
+    ]
+
+    categories = [
+        {"name": "Bills",         "total": 120.00},
+        {"name": "Shopping",      "total": 60.00},
+        {"name": "Transport",     "total": 45.00},
+        {"name": "Health",        "total": 30.00},
+        {"name": "Entertainment", "total": 25.00},
+        {"name": "Other",         "total": 15.00},
+        {"name": "Food",          "total": 21.25},
+    ]
+
+    return render_template(
+        "profile.html",
+        user=user,
+        summary=summary,
+        transactions=transactions,
+        categories=categories,
+    )
 
 
 @app.route("/expenses/add")
