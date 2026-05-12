@@ -44,6 +44,28 @@
         </div>
     </div>
 
+    {# ── Date filter ───────────────────────────────────────────────── #}
+    <div class="section-card filter-card">
+        <form method="GET" action="{{ url_for('profile') }}" class="filter-form">
+            <div class="filter-fields">
+                <div class="form-group">
+                    <label for="date_from">From</label>
+                    <input type="date" id="date_from" name="date_from"
+                           class="form-input" value="{{ date_from or '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="date_to">To</label>
+                    <input type="date" id="date_to" name="date_to"
+                           class="form-input" value="{{ date_to or '' }}">
+                </div>
+                <div class="filter-actions">
+                    <button type="submit" class="btn-filter">Filter</button>
+                    <a href="{{ url_for('profile') }}" class="btn-clear">Clear</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
     {# ── Transaction history ────────────────────────────────────────── #}
     <div class="section-card">
         <div class="section-header">
@@ -83,17 +105,21 @@
             <h2 class="section-title">Spending by Category</h2>
         </div>
         <div class="cat-list">
-            {% set max_total = categories | map(attribute='total') | max %}
-            {% for cat in categories %}
-            <div class="cat-row">
-                <span class="cat-badge badge--{{ cat.name | lower }}"></span>
-                <span class="cat-name">{{ cat.name }}</span>
-                <div class="cat-track">
-                    <div class="cat-fill" style="--bar-width: {{ (cat.total / max_total * 100) | round | int }}%"></div>
+            {% if categories %}
+                {% set max_total = categories | map(attribute='total') | max %}
+                {% for cat in categories %}
+                <div class="cat-row">
+                    <span class="cat-badge badge--{{ cat.name | lower }}"></span>
+                    <span class="cat-name">{{ cat.name }}</span>
+                    <div class="cat-track">
+                        <div class="cat-fill" style="--bar-width: {{ (cat.total / max_total * 100) | round | int }}%"></div>
+                    </div>
+                    <span class="cat-total">₹{{ "%.2f"|format(cat.total) }}</span>
                 </div>
-                <span class="cat-total">₹{{ "%.2f"|format(cat.total) }}</span>
-            </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                <p class="empty-state">No expenses in this period.</p>
+            {% endif %}
         </div>
     </div>
 

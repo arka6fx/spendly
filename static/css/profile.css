@@ -304,6 +304,69 @@
 }
 
 /* ------------------------------------------------------------------ */
+/* Date filter form                                                     */
+/* ------------------------------------------------------------------ */
+
+.filter-card {
+    padding: 1rem 1.25rem;
+}
+
+.filter-form .filter-fields {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-form .form-group {
+    margin-bottom: 0;
+    flex: 1;
+    min-width: 140px;
+}
+
+.filter-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.05rem;
+}
+
+.btn-filter {
+    padding: 0.6rem 1.2rem;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-filter:hover { background: var(--accent); }
+
+.btn-clear {
+    padding: 0.6rem 1rem;
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: color 0.2s;
+}
+
+.btn-clear:hover { color: var(--ink); }
+
+/* ------------------------------------------------------------------ */
+/* Empty state                                                          */
+/* ------------------------------------------------------------------ */
+
+.empty-state {
+    padding: 1.25rem 1.5rem;
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+}
+
+/* ------------------------------------------------------------------ */
 /* Responsive                                                           */
 /* ------------------------------------------------------------------ */
 
