@@ -90,13 +90,14 @@ def profile():
     if not session.get("user_id"):
         return redirect(url_for("login"))
 
-    user = get_user_by_id(session["user_id"])
+    uid       = session["user_id"]
+    date_from = request.args.get("date_from", "").strip()
+    date_to   = request.args.get("date_to",   "").strip()
 
-    summary = get_summary_stats(session["user_id"])
-
-    transactions = get_recent_transactions(session["user_id"])
-
-    categories = get_category_breakdown(session["user_id"])
+    user         = get_user_by_id(uid)
+    summary      = get_summary_stats(uid, date_from, date_to)
+    transactions = get_recent_transactions(uid, date_from, date_to)
+    categories   = get_category_breakdown(uid, date_from, date_to)
 
     return render_template(
         "profile.html",
@@ -104,6 +105,8 @@ def profile():
         summary=summary,
         transactions=transactions,
         categories=categories,
+        date_from=date_from,
+        date_to=date_to,
     )
 
 
