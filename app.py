@@ -2,6 +2,7 @@ import sqlite3
 from flask import Flask, render_template, request, redirect, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from database.db import get_db, init_db, seed_db, create_user, get_user_by_email
+from database.queries import get_user_by_id, get_summary_stats, get_recent_transactions, get_category_breakdown
 
 app = Flask(__name__)
 app.secret_key = "dev-secret-change-in-prod"  # replace in production
@@ -89,35 +90,13 @@ def profile():
     if not session.get("user_id"):
         return redirect(url_for("login"))
 
-    user = {
-        "name": "Alex Rivera",
-        "email": "alex@example.com",
-        "created_at": "2025-01-15",
-    }
+    user = get_user_by_id(session["user_id"])
 
-    summary = {
-        "total_spent": 316.25,
-        "total_count": 8,
-        "top_category": "Bills",
-    }
+    summary = get_summary_stats(session["user_id"])
 
-    transactions = [
-        {"date": "2026-05-10", "description": "Movie tickets",    "category": "Entertainment", "amount": 25.00},
-        {"date": "2026-05-07", "description": "Pharmacy",         "category": "Health",        "amount": 30.00},
-        {"date": "2026-05-05", "description": "Internet bill",    "category": "Bills",         "amount": 120.00},
-        {"date": "2026-05-03", "description": "Monthly bus pass", "category": "Transport",     "amount": 45.00},
-        {"date": "2026-05-01", "description": "Lunch at cafe",    "category": "Food",          "amount": 12.50},
-    ]
+    transactions = get_recent_transactions(session["user_id"])
 
-    categories = [
-        {"name": "Bills",         "total": 120.00},
-        {"name": "Shopping",      "total": 60.00},
-        {"name": "Transport",     "total": 45.00},
-        {"name": "Health",        "total": 30.00},
-        {"name": "Entertainment", "total": 25.00},
-        {"name": "Other",         "total": 15.00},
-        {"name": "Food",          "total": 21.25},
-    ]
+    categories = get_category_breakdown(session["user_id"])
 
     return render_template(
         "profile.html",
