@@ -16,3 +16,6 @@ venv/
 # IDE
 .vscode/
 .idea/
+
+# MCP config (contains absolute paths specific to this machine)
+.mcp.json
