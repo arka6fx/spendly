@@ -1,11 +1,14 @@
+import datetime
 import sqlite3
 from flask import Flask, render_template, request, redirect, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
-from database.db import get_db, init_db, seed_db, create_user, get_user_by_email
+from database.db import get_db, init_db, seed_db, create_user, get_user_by_email, add_expense as db_add_expense
 from database.queries import get_user_by_id, get_summary_stats, get_recent_transactions, get_category_breakdown
 
 app = Flask(__name__)
 app.secret_key = "dev-secret-change-in-prod"  # replace in production
+
+ALLOWED_CATEGORIES = {"Food", "Transport", "Bills", "Health", "Entertainment", "Shopping", "Other"}
 
 
 # ------------------------------------------------------------------ #
@@ -110,9 +113,49 @@ def profile():
     )
 
 
-@app.route("/expenses/add")
+@app.route("/expenses/add", methods=["GET", "POST"])
 def add_expense():
-    return "Add expense — coming in Step 7"
+    if not session.get("user_id"):
+        return redirect(url_for("login"))
+
+    if request.method == "GET":
+        return render_template("add_expense.html")
+
+    amount_raw  = request.form.get("amount", "").strip()
+    category    = request.form.get("category", "").strip()
+    date        = request.form.get("date", "").strip()
+    description = request.form.get("description", "").strip()
+
+    def re_render(error):
+        return render_template(
+            "add_expense.html",
+            error=error,
+            amount=amount_raw,
+            category=category,
+            date=date,
+            description=description,
+        )
+
+    try:
+        amount = float(amount_raw)
+        if amount <= 0:
+            raise ValueError
+    except ValueError:
+        return re_render("Amount must be a positive number.")
+
+    if category not in ALLOWED_CATEGORIES:
+        return re_render("Please select a valid category.")
+
+    if not date:
+        return re_render("Date is required.")
+
+    try:
+        datetime.date.fromisoformat(date)
+    except ValueError:
+        return re_render("Please enter a valid date (YYYY-MM-DD).")
+
+    db_add_expense(session["user_id"], amount, category, date, description or None)
+    return redirect(url_for("profile"))
 
 
 @app.route("/expenses/<int:id>/edit")
