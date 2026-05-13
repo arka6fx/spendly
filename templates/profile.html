@@ -11,8 +11,13 @@
 
     {# ── Page header ───────────────────────────────────────────────── #}
     <header class="profile-header">
-        <h1 class="profile-heading">My Profile</h1>
-        <p class="profile-subheading">Your account details and spending summary</p>
+        <div class="profile-header-row">
+            <div>
+                <h1 class="profile-heading">My Profile</h1>
+                <p class="profile-subheading">Your account details and spending summary</p>
+            </div>
+            <a href="{{ url_for('add_expense') }}" class="btn-add-expense">+ Add Expense</a>
+        </div>
     </header>
 
     {# ── User info card ────────────────────────────────────────────── #}
