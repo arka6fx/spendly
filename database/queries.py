@@ -12,7 +12,9 @@ def get_user_by_id(user_id):
         ).fetchone()
         if row is None:
             return None
-        formatted = datetime.strptime(row["created_at"][:10], "%Y-%m-%d").strftime("%B %Y")
+        formatted = datetime.strptime(row["created_at"][:10], "%Y-%m-%d").strftime(
+            "%B %Y"
+        )
         return {"name": row["name"], "email": row["email"], "created_at": formatted}
     finally:
         conn.close()
@@ -53,7 +55,7 @@ def get_summary_stats(user_id, date_from=None, date_to=None):
 
 def get_recent_transactions(user_id, date_from=None, date_to=None, limit=None):
     clause, params = _date_clause(user_id, date_from, date_to)
-    sql = f"SELECT date, description, category, amount FROM expenses {clause} ORDER BY date DESC"
+    sql = f"SELECT id, date, description, category, amount FROM expenses {clause} ORDER BY date DESC"
     if limit:
         sql += " LIMIT ?"
         params.append(limit)
@@ -74,5 +76,29 @@ def get_category_breakdown(user_id, date_from=None, date_to=None):
             params,
         ).fetchall()
         return [dict(row) for row in rows]
+    finally:
+        conn.close()
+
+
+def get_expense_by_id(expense_id):
+    conn = get_db()
+    try:
+        row = conn.execute(
+            "SELECT id, user_id, amount, category, date, description FROM expenses WHERE id = ?",
+            (expense_id,),
+        ).fetchone()
+        return dict(row) if row else None
+    finally:
+        conn.close()
+
+
+def update_expense(expense_id, amount, category, date, description):
+    conn = get_db()
+    try:
+        conn.execute(
+            "UPDATE expenses SET amount = ?, category = ?, date = ?, description = ? WHERE id = ?",
+            (amount, category, date, description, expense_id),
+        )
+        conn.commit()
     finally:
         conn.close()
