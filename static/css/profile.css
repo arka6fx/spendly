@@ -213,7 +213,9 @@
 }
 
 .tx-table th.col-amount,
-.tx-table td.col-amount {
+.tx-table td.col-amount,
+.tx-table th.col-actions,
+.tx-table td.col-actions {
     text-align: right;
 }
 
