@@ -295,6 +295,50 @@ a { color: inherit; text-decoration: none; }
     color: var(--ink);
 }
 
+.tx-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.25rem;
+}
+
+.delete-form { margin: 0; }
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    background: none;
+    color: var(--ink-faint);
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+
+.btn-icon svg {
+    width: 15px;
+    height: 15px;
+    stroke-width: 2;
+}
+
+.btn-icon:hover {
+    color: var(--ink);
+    background: var(--paper);
+    border-color: var(--border);
+}
+
+.btn-icon--danger:hover {
+    color: var(--danger);
+    background: var(--danger-light);
+    border-color: var(--danger-light);
+}
+
 /* ------------------------------------------------------------------ */
 /* Features section                                                    */
 /* ------------------------------------------------------------------ */
