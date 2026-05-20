@@ -53,9 +53,7 @@ def create_user(name, email, password_hash):
 def get_user_by_email(email):
     conn = get_db()
     try:
-        return conn.execute(
-            "SELECT * FROM users WHERE email = ?", (email,)
-        ).fetchone()
+        return conn.execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
     finally:
         conn.close()
 
@@ -87,14 +85,14 @@ def seed_db():
     user_id = cursor.lastrowid
 
     expenses = [
-        (user_id, 12.50,  "Food",          "2026-05-01", "Lunch at cafe"),
-        (user_id, 45.00,  "Transport",     "2026-05-03", "Monthly bus pass"),
-        (user_id, 120.00, "Bills",         "2026-05-05", "Internet bill"),
-        (user_id, 30.00,  "Health",        "2026-05-07", "Pharmacy"),
-        (user_id, 25.00,  "Entertainment", "2026-05-10", "Movie tickets"),
-        (user_id, 60.00,  "Shopping",      "2026-05-12", "New shoes"),
-        (user_id, 15.00,  "Other",         "2026-05-14", "Miscellaneous"),
-        (user_id, 8.75,   "Food",          "2026-05-16", "Coffee and snacks"),
+        (user_id, 12.50, "Food", "2026-05-01", "Lunch at cafe"),
+        (user_id, 45.00, "Transport", "2026-05-03", "Monthly bus pass"),
+        (user_id, 120.00, "Bills", "2026-05-05", "Internet bill"),
+        (user_id, 30.00, "Health", "2026-05-07", "Pharmacy"),
+        (user_id, 25.00, "Entertainment", "2026-05-10", "Movie tickets"),
+        (user_id, 60.00, "Shopping", "2026-05-12", "New shoes"),
+        (user_id, 15.00, "Other", "2026-05-14", "Miscellaneous"),
+        (user_id, 8.75, "Food", "2026-05-16", "Coffee and snacks"),
     ]
     conn.executemany(
         "INSERT INTO expenses (user_id, amount, category, date, description) VALUES (?, ?, ?, ?, ?)",
@@ -102,3 +100,12 @@ def seed_db():
     )
     conn.commit()
     conn.close()
+
+
+def delete_expense(expense_id):
+    conn = get_db()
+    try:
+        conn.execute("DELETE FROM expenses WHERE id = ?", (expense_id,))
+        conn.commit()
+    finally:
+        conn.close()
