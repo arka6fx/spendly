@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "spendly",
+  "main": "src/worker.py",
+  "workers_dev": true,
+  "compatibility_date": "2025-11-02",
+  "compatibility_flags": [
+    "python_workers",
+    "python_dedicated_snapshot"
+  ],
+  "routes": [
+    { "pattern": "spendly.arka6fx.com", "custom_domain": true }
+  ],
+  "assets": {
+    "directory": "./assets/",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "spendly",
+      "database_id": "bba375cc-b3df-4752-892b-854b92f108d4"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

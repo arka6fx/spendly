@@ -1,0 +1,17 @@
+[project]
+name = "spendly-cloudflare"
+version = "0.1.0"
+description = "Spendly — personal expense tracker, deployed as a Cloudflare Python Worker backed by D1"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi",
+    "markupsafe",
+    "jinja2",
+]
+
+[dependency-groups]
+dev = [
+    "workers-py",
+    "workers-runtime-sdk",
+]

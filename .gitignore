@@ -3,15 +3,25 @@ __pycache__/
 *.py[cod]
 *.pyo
 
-# Virtual environment
+# Virtual environments
 venv/
 .venv/
+.venv-workers/
 
-# SQLite database
-*.db
+# Wrangler local state
+.wrangler/
+
+# Bundled/installed Python packages
+python_modules/
+
+# Cloudflare secrets
+.dev.vars
 
 # Environment variables
 .env
+
+# SQLite database
+*.db
 
 # IDE
 .vscode/
