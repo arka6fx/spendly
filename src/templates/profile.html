@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}Profile — Spendly{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/profile.css">
+{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+
+    {# ── Page header ───────────────────────────────────────────────── #}
+    <header class="profile-header">
+        <div class="profile-header-row">
+            <div>
+                <h1 class="profile-heading">My Profile</h1>
+                <p class="profile-subheading">Your account details and spending summary</p>
+            </div>
+            <a href="/expenses/add" class="btn-add-expense">+ Add Expense</a>
+        </div>
+    </header>
+
+    {# ── User info card ────────────────────────────────────────────── #}
+    <div class="profile-info-card">
+        <div class="profile-avatar">{{ user.name[0] }}</div>
+        <div class="profile-details">
+            <p class="profile-name">{{ user.name }}</p>
+            <p class="profile-email">{{ user.email }}</p>
+            <p class="profile-since">Member since {{ user.created_at }}</p>
+        </div>
+    </div>
+
+    {# ── Summary stats ─────────────────────────────────────────────── #}
+    <div class="stats-row">
+        <div class="stat-tile">
+            <div class="stat-icon-wrap"><i data-lucide="credit-card"></i></div>
+            <p class="stat-value">₹{{ "%.2f"|format(summary.total_spent) }}</p>
+            <p class="stat-label">Total Spent</p>
+        </div>
+        <div class="stat-tile">
+            <div class="stat-icon-wrap"><i data-lucide="receipt"></i></div>
+            <p class="stat-value">{{ summary.total_count }}</p>
+            <p class="stat-label">Transactions</p>
+        </div>
+        <div class="stat-tile">
+            <div class="stat-icon-wrap"><i data-lucide="tag"></i></div>
+            <p class="stat-value">{{ summary.top_category }}</p>
+            <p class="stat-label">Top Category</p>
+        </div>
+    </div>
+
+    {# ── Date filter ───────────────────────────────────────────────── #}
+    <div class="section-card filter-card">
+        <form method="GET" action="/profile" class="filter-form">
+            <div class="filter-fields">
+                <div class="form-group">
+                    <label for="date_from">From</label>
+                    <input type="date" id="date_from" name="date_from"
+                           class="form-input" value="{{ date_from or '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="date_to">To</label>
+                    <input type="date" id="date_to" name="date_to"
+                           class="form-input" value="{{ date_to or '' }}">
+                </div>
+                <div class="filter-actions">
+                    <button type="submit" class="btn-filter">Filter</button>
+                    <a href="/profile" class="btn-clear">Clear</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {# ── Transaction history ────────────────────────────────────────── #}
+    <div class="section-card">
+        <div class="section-header">
+            <span class="section-icon"><i data-lucide="clock"></i></span>
+            <h2 class="section-title">Recent Transactions</h2>
+        </div>
+        <table class="tx-table">
+            <thead>
+                <tr>
+                    <th class="col-date">Date</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th class="col-amount">Amount</th>
+                    <th class="col-actions">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tx in transactions %}
+                <tr>
+                    <td class="tx-date">{{ tx.date }}</td>
+                    <td>{{ tx.description }}</td>
+                    <td>
+                        <span class="badge badge--{{ tx.category | lower }}">
+                            {{ tx.category }}
+                        </span>
+                    </td>
+                    <td class="col-amount tx-amount">₹{{ "%.2f"|format(tx.amount) }}</td>
+                    <td class="tx-actions col-actions">
+                        <a href="/expenses/{{ tx.id }}/edit"
+                           class="btn-icon" aria-label="Edit expense">
+                            <i data-lucide="pencil"></i>
+                        </a>
+                        <form method="POST"
+                              action="/expenses/{{ tx.id }}/delete"
+                              class="delete-form"
+                              onsubmit="return confirm('Delete this expense? This cannot be undone.')">
+                            <button type="submit" class="btn-icon btn-icon--danger" aria-label="Delete expense">
+                                <i data-lucide="trash-2"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {# ── Category breakdown ────────────────────────────────────────── #}
+    <div class="section-card">
+        <div class="section-header">
+            <span class="section-icon"><i data-lucide="pie-chart"></i></span>
+            <h2 class="section-title">Spending by Category</h2>
+        </div>
+        <div class="cat-list">
+            {% if categories %}
+                {% set max_total = categories | map(attribute='total') | max %}
+                {% for cat in categories %}
+                <div class="cat-row">
+                    <span class="cat-badge badge--{{ cat.name | lower }}"></span>
+                    <span class="cat-name">{{ cat.name }}</span>
+                    <div class="cat-track">
+                        <div class="cat-fill" style="--bar-width: {{ (cat.total / max_total * 100) | round | int }}%"></div>
+                    </div>
+                    <span class="cat-total">₹{{ "%.2f"|format(cat.total) }}</span>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="empty-state">No expenses in this period.</p>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+{% endblock %}
