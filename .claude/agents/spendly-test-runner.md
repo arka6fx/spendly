@@ -150,3 +150,7 @@ Always check test output for signals of these common Spendly mistakes:
 - If results are ambiguous, re-run with `pytest -s` for full output before concluding
 
 ---
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

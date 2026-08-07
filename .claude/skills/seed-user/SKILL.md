@@ -29,3 +29,7 @@ Then write and run a Python script using Bash that:
    - id
    - name
    - email
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

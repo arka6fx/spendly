@@ -79,3 +79,7 @@ already available.
 - [ ] Guest navbar still shows "Sign in" and "Get started"
 - [ ] The login form `action` uses `url_for('login')` — no hardcoded URLs
 - [ ] App starts without errors and all existing routes continue to work
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

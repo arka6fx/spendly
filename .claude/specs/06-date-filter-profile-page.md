@@ -99,3 +99,7 @@ No new dependencies.
 - [ ] A user with no expenses in the selected range sees zeroed stats and an empty table (no crash)
 - [ ] `get_user_by_id` is unchanged — user info is always shown regardless of filter
 - [ ] App starts without errors and all existing routes continue to work
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

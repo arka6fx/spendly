@@ -92,3 +92,7 @@ No new dependencies.
 - [ ] A user with no expenses sees zeroed stats and an empty transaction table (no crash)
 - [ ] All four DB helpers use parameterised queries — no inline SQL in `app.py`
 - [ ] App starts without errors and all existing routes continue to work
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)
