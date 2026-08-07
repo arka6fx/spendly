@@ -119,3 +119,7 @@ approves.
 - If either subagent fails or returns no output, 
   report it and do not present a partial review 
   as complete
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

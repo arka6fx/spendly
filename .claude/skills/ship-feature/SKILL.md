@@ -174,3 +174,7 @@ Next: run /create-spec for the next feature
 - If push fails due to no upstream, use:
   `git push -u origin CURRENT_BRANCH`
 - Never proceed to merge if PR creation fails
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

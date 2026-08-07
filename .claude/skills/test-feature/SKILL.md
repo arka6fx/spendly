@@ -97,3 +97,7 @@ summary:
 One of:
 - ✅ Ready for code review — all tests pass
 - ❌ Needs fixes — list the failing tests and their root causes
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

@@ -100,3 +100,7 @@ No new dependencies.
 - [ ] On validation error, all previously entered field values are repopulated in the form
 - [ ] The profile page summary stats (total spent, count) reflect the newly added expense
 - [ ] App starts without errors and all existing routes continue to work
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

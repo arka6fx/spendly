@@ -62,3 +62,7 @@ No new dependencies.
 - [ ] The page displays a category breakdown section with at least three categories
 - [ ] The navbar shows the logged-in state (username + logout link)
 - [ ] No hex colour values appear in `profile.html` — only CSS variables
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

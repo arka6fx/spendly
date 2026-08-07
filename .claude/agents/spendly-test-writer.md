@@ -149,3 +149,7 @@ Examples of what to record:
 - Validation rules discovered from the spec (e.g., email uniqueness, amount must be positive)
 - Auth/session patterns used in tests (e.g., how to simulate a logged-in user with the test client)
 - Any project-specific gotchas (e.g., FK enforcement, port 5001, no blueprints)
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

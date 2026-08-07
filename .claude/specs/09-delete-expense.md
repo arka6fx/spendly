@@ -64,3 +64,7 @@ No new dependencies.
 - [ ] POSTing while not logged in redirects to `/login`
 - [ ] A delete button appears on each expense row in `profile.html` with a JS confirmation dialog
 - [ ] Clicking "Cancel" in the confirmation dialog does not submit the form
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

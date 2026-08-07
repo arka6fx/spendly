@@ -67,3 +67,7 @@ No new dependencies.
 - [ ] The password stored in the DB is a hash, not the plain-text value
 - [ ] The form `action` uses `url_for('register')` — no hardcoded URLs
 - [ ] App starts and all existing routes continue to work without errors
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

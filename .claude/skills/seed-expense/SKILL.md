@@ -59,3 +59,7 @@ Print:
 - How many expenses were inserted
 - The date range they span
 - A sample of 5 inserted records
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

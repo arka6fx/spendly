@@ -189,3 +189,7 @@ Use exactly these values:
 - [ ] App starts without errors
 - [ ] Foreign key enforcement works
 - [ ] All queries use parameterized SQL
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

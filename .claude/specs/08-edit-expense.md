@@ -104,3 +104,7 @@ No new dependencies.
 - [ ] The updated values are visible on the profile page after the redirect
 - [ ] An ownership check applies on POST as well — a crafted POST to another user's expense id returns 403
 - [ ] App starts without errors and all existing routes continue to work
+
+---
+
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)

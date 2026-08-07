@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Spendly is a lightweight personal expense tracker built with Flask and SQLite.
 
+**Repository:** [https://github.com/arka6fx/spendly](https://github.com/arka6fx/spendly)
+
 ## Architecture
 
 ```text
